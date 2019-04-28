@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import 'antd/dist/antd.css';
 
-class AboutPage extends Component {
+class SummarizerPage extends Component {
 
   constructor(props) {
     super(props)
@@ -16,4 +16,4 @@ class AboutPage extends Component {
   }
 }
 
-export default AboutPage;
+export default SummarizerPage;
