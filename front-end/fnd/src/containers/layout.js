@@ -1,10 +1,10 @@
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Card } from 'antd';
 import React, { Component } from 'react'
 
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
 
 const {
-  Header, Content, Footer, Sider,
+  Header, Content, Footer, Sider
 } = Layout;
 
 const SubMenu = Menu.SubMenu;
@@ -14,6 +14,9 @@ class LayoutPage extends Component {
 
   state = {
       collapsed: false,
+      stance: true,
+      bias: false,
+      summarization: false
     };
 
   constructor(props) {
@@ -23,6 +26,52 @@ class LayoutPage extends Component {
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
+  }
+
+  renderAppropriate = () => {
+    if (this.state.stance) {
+      return (
+        <Card title="Stance" bordered={false}>Stance tab!!</Card>
+      )
+    } else if (this.state.bias){
+      return (
+        <Card title="Bias" bordered={false}>Bias tab!!</Card>
+      )
+    } else if (this.state.summarization){
+      return (
+        <Card title="Summarization" bordered={false}>Summarization tab!!</Card>
+      )
+    }
+  }
+
+  stanceSelected = () => {
+    console.log('Stance is triggered');
+    this.setState( {
+      collapsed: this.state.collapsed,
+      stance: true,
+      bias: false,
+      summarization: false
+    })
+  }
+
+  biasSelection = () => {
+    console.log('Bias is triggered');
+    this.setState( {
+      collapsed: this.state.collapsed,
+      stance: false,
+      bias: true,
+      summarization: false
+    })
+  }
+
+  summarizationSelected = () => {
+    console.log('Summarization is triggered');
+    this.setState( {
+      collapsed: this.state.collapsed,
+      stance: false,
+      bias: false,
+      summarization: true
+    })
   }
 
   render() {
@@ -35,7 +84,7 @@ class LayoutPage extends Component {
         >
           <div className="logo" />
           <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1">
+            <Menu.Item onClick={this.stanceSelected} key="1">
               <Icon type="pie-chart" />
               <span>Stance Detection</span>
             </Menu.Item>
@@ -43,10 +92,10 @@ class LayoutPage extends Component {
               key="sub1"
               title={<span><Icon type="user" /><span>Bias Detection</span></span>}
             >
-              <Menu.Item key="3">Lexicon-based</Menu.Item>
+              <Menu.Item onClick={this.biasSelection} key="3">Lexicon-based</Menu.Item>
             </SubMenu>
 
-            <Menu.Item key="2">
+            <Menu.Item onClick={this.summarizationSelected} key="2">
               <Icon type="desktop" />
               <span>News Summarization</span>
             </Menu.Item>
@@ -81,7 +130,9 @@ class LayoutPage extends Component {
             </Breadcrumb>
             <br />
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              This is a component to be filled!
+              {
+                this.renderAppropriate()
+              }
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
