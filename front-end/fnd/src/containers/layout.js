@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Layout, Menu, Breadcrumb, Icon, Card } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { withRouter } from 'react-router-dom';
 
 import 'antd/dist/antd.css';
 
@@ -56,6 +57,7 @@ class LayoutPage extends Component {
 
   analyzeSelected = () => {
     console.log('Analyze is triggered');
+    this.props.history.push("/analyze");
     this.setState( {
       collapsed: this.state.collapsed,
       analyze: true,
@@ -68,6 +70,7 @@ class LayoutPage extends Component {
 
   stanceSelected = () => {
     console.log('Stance is triggered');
+    this.props.history.push("/stance");
     this.setState( {
       collapsed: this.state.collapsed,
       analyze: false,
@@ -80,6 +83,7 @@ class LayoutPage extends Component {
 
   biasSelection = () => {
     console.log('Bias is triggered');
+    this.props.history.push("/bias");
     this.setState( {
       collapsed: this.state.collapsed,
       analyze: false,
@@ -92,6 +96,7 @@ class LayoutPage extends Component {
 
   summarizationSelected = () => {
     console.log('Summarization is triggered');
+    this.props.history.push("/summarization");
     this.setState( {
       collapsed: this.state.collapsed,
       analyze: false,
@@ -104,6 +109,7 @@ class LayoutPage extends Component {
 
   aboutSelected = () => {
     console.log('Summarization is triggered');
+    this.props.history.push("/about");
     this.setState( {
       collapsed: this.state.collapsed,
       analyze: false,
@@ -186,4 +192,4 @@ class LayoutPage extends Component {
   }
 }
 
-export default LayoutPage;
+export default withRouter(LayoutPage);

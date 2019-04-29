@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux';
 import ReduxPromise from 'redux-promise';
 import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
+// import { ConnectedRouter } from 'connected-react-router'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { history } from './store'
 import App from './containers/app'

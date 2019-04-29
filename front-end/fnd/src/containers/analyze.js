@@ -10,7 +10,6 @@ class AnalyzePage extends Component {
   }
 
   render() {
-    {console.log('triggered analyze!!!!!!')}
     return (
         <Card title="Analyze" bordered={false}>
           Analyze tab!!

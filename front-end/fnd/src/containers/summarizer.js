@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Card } from 'antd'
 
 import 'antd/dist/antd.css';
 
@@ -10,8 +11,9 @@ class SummarizerPage extends Component {
 
   render() {
     return (
-      <div>
-      </div>
+      <Card title="Summarization" bordered={false}>
+        Summarization tab!!
+      </Card>
     );
   }
 }
