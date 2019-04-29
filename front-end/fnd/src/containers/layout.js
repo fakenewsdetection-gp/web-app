@@ -30,29 +30,29 @@ class LayoutPage extends Component {
     this.setState({ collapsed });
   }
 
-  renderAppropriate = () => {
-    if (this.state.analyze) {
-      return (
-        <Card title="Analyze" bordered={false}>Analyze tab!!</Card>
-      )
-    } else if (this.state.stance) {
-      return (
-        <Card title="Stance" bordered={false}>Stance tab!!</Card>
-      )
-    } else if (this.state.bias){
-      return (
-        <Card title="Bias" bordered={false}>Bias tab!!</Card>
-      )
-    } else if (this.state.summarization){
-      return (
-        <Card title="Summarization" bordered={false}>Summarization tab!!</Card>
-      )
-    } else if (this.state.about){
-      return (
-        <Card title="About" bordered={false}>About tab!!</Card>
-      )
-    }
-  }
+  // renderAppropriate = () => {
+  //   if (this.state.analyze) {
+  //     return (
+  //       <Card title="Analyze" bordered={false}>Analyze tab!!</Card>
+  //     )
+  //   } else if (this.state.stance) {
+  //     return (
+  //       <Card title="Stance" bordered={false}>Stance tab!!</Card>
+  //     )
+  //   } else if (this.state.bias){
+  //     return (
+  //       <Card title="Bias" bordered={false}>Bias tab!!</Card>
+  //     )
+  //   } else if (this.state.summarization){
+  //     return (
+  //       <Card title="Summarization" bordered={false}>Summarization tab!!</Card>
+  //     )
+  //   } else if (this.state.about){
+  //     return (
+  //       <Card title="About" bordered={false}>About tab!!</Card>
+  //     )
+  //   }
+  // }
 
   analyzeSelected = () => {
     console.log('Analyze is triggered');
@@ -116,67 +116,72 @@ class LayoutPage extends Component {
 
   render() {
     return (
-      <Layout style={{ minHeight: '100vh' }}>
-        <Sider
-          collapsible
-          collapsed={this.state.collapsed}
-          onCollapse={this.onCollapse}
-        >
-          <div className="logo" />
-          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item onClick={this.analyzeSelected} key="1">
-              <Icon type="area-chart" />
-              <span>Analyze News</span>
-            </Menu.Item>
-            <Menu.Item onClick={this.stanceSelected} key="2">
-              <Icon type="pie-chart" />
-              <span>Stance</span>
-            </Menu.Item>
-            <SubMenu
-              key="sub1"
-              title={<span><Icon type="user" /><span>Bias</span></span>}
-            >
-              <Menu.Item onClick={this.biasSelection} key="4">Lexicon-based</Menu.Item>
-            </SubMenu>
+      <div>
+        <Layout style={{ minHeight: '100vh' }}>
+          <Sider
+            collapsible
+            collapsed={this.state.collapsed}
+            onCollapse={this.onCollapse}
+          >
+            <div className="logo" />
+            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
+              <Menu.Item onClick={this.analyzeSelected} key="1">
+                <Icon type="area-chart" />
+                <span>Analyze News</span>
+              </Menu.Item>
+              <Menu.Item onClick={this.stanceSelected} key="2">
+                <Icon type="pie-chart" />
+                <span>Stance</span>
+              </Menu.Item>
+              <SubMenu
+                key="sub1"
+                title={<span><Icon type="user" /><span>Bias</span></span>}
+              >
+                <Menu.Item onClick={this.biasSelection} key="4">Lexicon-based</Menu.Item>
+              </SubMenu>
 
-            <Menu.Item onClick={this.summarizationSelected} key="3">
-              <Icon type="desktop" />
-              <span>Summerization</span>
-            </Menu.Item>
+              <Menu.Item onClick={this.summarizationSelected} key="3">
+                <Icon type="desktop" />
+                <span>Summerization</span>
+              </Menu.Item>
 
-            <Menu.Item onClick={this.aboutSelected} key="9">
-              <Icon type="file" />
-              <span>About</span>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout>
-          <Header >
-            <font color='#a0acbc'>Fake News Detection </font>
-          </Header>
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb>
-              <Breadcrumb.Item href="">
-                <Icon type="home" />
-              </Breadcrumb.Item>
+              <Menu.Item onClick={this.aboutSelected} key="9">
+                <Icon type="file" />
+                <span>About</span>
+              </Menu.Item>
+            </Menu>
+          </Sider>
+          <Layout>
+            <Header >
+              <font color='#a0acbc'>Fake News Detection </font>
+            </Header>
+            <Content style={{ margin: '0 16px' }}>
+              <Breadcrumb>
+                <Breadcrumb.Item href="">
+                  <Icon type="home" />
+                </Breadcrumb.Item>
 
-              <Breadcrumb.Item>
-                <span>Application List</span>
-              </Breadcrumb.Item>
-              <Breadcrumb.Item>
-                Application
-              </Breadcrumb.Item>
-            </Breadcrumb>
-            <br />
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              { this.renderAppropriate() }
-            </div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>
-            Ant Design ©2018 Created by Ant UED
-          </Footer>
+                <Breadcrumb.Item>
+                  <span>Application List</span>
+                </Breadcrumb.Item>
+                <Breadcrumb.Item>
+                  Application
+                </Breadcrumb.Item>
+              </Breadcrumb>
+              <br />
+              <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                {this.props.children}
+              </div>
+              {/*<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                { this.renderAppropriate() }
+              </div>*/}
+            </Content>
+            <Footer style={{ textAlign: 'center' }}>
+              Ant Design ©2018 Created by Ant UED
+            </Footer>
+          </Layout>
         </Layout>
-      </Layout>
+      </div>
     );
   }
 }

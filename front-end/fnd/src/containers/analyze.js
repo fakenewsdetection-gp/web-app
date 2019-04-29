@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Card } from 'antd'
 
 import 'antd/dist/antd.css';
 
@@ -9,9 +10,11 @@ class AnalyzePage extends Component {
   }
 
   render() {
+    {console.log('triggered analyze!!!!!!')}
     return (
-      <div>
-      </div>
+        <Card title="Analyze" bordered={false}>
+          Analyze tab!!
+        </Card>
     );
   }
 }
