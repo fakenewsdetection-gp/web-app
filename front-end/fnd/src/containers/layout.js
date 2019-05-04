@@ -31,30 +31,6 @@ class LayoutPage extends Component {
     this.setState({ collapsed });
   }
 
-  // renderAppropriate = () => {
-  //   if (this.state.analyze) {
-  //     return (
-  //       <Card title="Analyze" bordered={false}>Analyze tab!!</Card>
-  //     )
-  //   } else if (this.state.stance) {
-  //     return (
-  //       <Card title="Stance" bordered={false}>Stance tab!!</Card>
-  //     )
-  //   } else if (this.state.bias){
-  //     return (
-  //       <Card title="Bias" bordered={false}>Bias tab!!</Card>
-  //     )
-  //   } else if (this.state.summarization){
-  //     return (
-  //       <Card title="Summarization" bordered={false}>Summarization tab!!</Card>
-  //     )
-  //   } else if (this.state.about){
-  //     return (
-  //       <Card title="About" bordered={false}>About tab!!</Card>
-  //     )
-  //   }
-  // }
-
   analyzeSelected = () => {
     console.log('Analyze is triggered');
     this.props.history.push("/analyze");
