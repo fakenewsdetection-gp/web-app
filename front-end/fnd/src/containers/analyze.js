@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Input, Form, Col, Row, Upload, message, Button, Icon } from 'antd'
+import { getTodos } from '../actions';
 
 import 'antd/dist/antd.css';
 
@@ -50,12 +51,14 @@ class AnalyzePage extends Component {
 
   handleSubmit = (e) => {
     console.log('Submission button triggered!');
+    var todos =  getTodos();
+    console.log(todos);
     e.preventDefault();
-       this.props.form.validateFieldsAndScroll((err, values) => {
-         if (!err) {
-           console.log('Received values of form: ', values);
-         }
-       });
+    this.props.form.validateFieldsAndScroll((err, values) => {
+     if (!err) {
+       console.log('Received values of form: ', values);
+     }
+     });
   }
 
   handleUpload = () => {
