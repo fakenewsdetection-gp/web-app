@@ -5,10 +5,6 @@ import 'antd/dist/antd.css';
 
 class BiasPage extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <Card title="Bias" bordered={false}>

@@ -1,16 +1,14 @@
 import axios from 'axios';
 
 export const BASE_URL = "http://localhost:5000";
-export const GETTODOS = 'GETTODOS';
+export const ANALYZE = 'ANALYZE';
 
-export function getTodos() {
-  const URL = `${BASE_URL}/todos`;
-  const request = axios.get(URL).then(function (response) {
-    console.log(response);
-  });
-  // console.log(request);
+export function analyze(article) {
+  axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+  const URL = `${BASE_URL}/analysis`;
+  const request = axios.put(URL, article);
   return {
-      type: GETTODOS,
+      type: ANALYZE,
       payload: request
   };
 }

@@ -5,10 +5,6 @@ import 'antd/dist/antd.css';
 
 class StancePage extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <Card title="Stance" bordered={false}>

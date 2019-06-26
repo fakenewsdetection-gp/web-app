@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Card, Input, Form, Col, Row, Upload, message, Button, Icon } from 'antd'
-import { getTodos } from '../actions';
+import { Card, Input, Form, Row, Upload, message, Button, Icon } from 'antd'
+import { analyze } from '../actions';
+import { connect } from 'react-redux';
+
 
 import 'antd/dist/antd.css';
 
@@ -51,8 +53,12 @@ class AnalyzePage extends Component {
 
   handleSubmit = (e) => {
     console.log('Submission button triggered!');
-    var todos =  getTodos();
-    console.log(todos);
+    const article = {
+      'headline': 'USA Elections',
+      'body': 'Here is the body of the article.'
+    }
+    console.log('Investigated article: ', article);
+    var result = this.props.analyze(article);
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
      if (!err) {
@@ -63,6 +69,7 @@ class AnalyzePage extends Component {
 
   handleUpload = () => {
     console.log('Uploading Triggered!');
+    console.log('requested analysis: ', this.props.analysisResult);
     this.setState({uploadBody: true})
   }
 
@@ -84,7 +91,7 @@ class AnalyzePage extends Component {
                 <Form.Item
                   label="Body(*)"
                 >
-                  {getFieldDecorator('userName', {
+                  {getFieldDecorator('body', {
                               rules: [{ required: !this.state.uploadBody, message: 'Please enter the body of the article!' }],
                             })(
                               <TextArea rows={7} placeholder="Enter the body of the article" id="error"/>
@@ -116,5 +123,8 @@ class AnalyzePage extends Component {
 
 const WrappedAnalyzeForm = Form.create({ name: 'analyze' })(AnalyzePage);
 
+function mapStateToProps(state) {
+  return { analysisResult: state.result }
+}
 
-export default WrappedAnalyzeForm;
+export default connect(mapStateToProps, { analyze })(WrappedAnalyzeForm);

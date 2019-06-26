@@ -5,10 +5,6 @@ import 'antd/dist/antd.css';
 
 class SummarizerPage extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <Card title="Summarization" bordered={false}>
