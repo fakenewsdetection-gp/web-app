@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { history } from './store'
 import App from './containers/app'
-import AnalyzePage from './containers/analyze'
+import AnalyzePage from './containers/analysis'
 import BiasPage from './containers/bias'
 import StancePage from './containers/stance'
 import SummarizerPage from './containers/summarizer'

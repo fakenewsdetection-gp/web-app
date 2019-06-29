@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Card, Input, Form, Row, Upload, message, Button, Icon } from 'antd'
 import { analyze } from '../actions';
 import { connect } from 'react-redux';
-
-
+import Result from './result'
 import 'antd/dist/antd.css';
 
 const { TextArea } = Input;
@@ -44,7 +43,8 @@ const props = {
 class AnalyzePage extends Component {
 
   state = {
-    uploadBody: false
+    uploadBody: false,
+    showResults: false
   }
 
   constructor(props) {
@@ -58,13 +58,16 @@ class AnalyzePage extends Component {
       'body': 'Here is the body of the article.'
     }
     console.log('Investigated article: ', article);
-    var result = this.props.analyze(article);
+    // var result = this.props.analyze(article);
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
-     if (!err) {
-       console.log('Received values of form: ', values);
-     }
-     });
+       if (!err) {
+         console.log('Received values of form: ', values);
+       }
+    });
+    this.setState({
+      showResults: true
+    })
   }
 
   handleUpload = () => {
@@ -73,10 +76,17 @@ class AnalyzePage extends Component {
     this.setState({uploadBody: true})
   }
 
+  handleClose = () => {
+    this.setState({showResults: false})
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
         <Card title="Analyze" bordered={false}>
+          {
+            this.state.showResults ? <Result close={this.handleClose}/> : ''
+          }
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Row gutter={16}>
               <Form.Item
@@ -89,7 +99,7 @@ class AnalyzePage extends Component {
             </Row>
             <Row gutter={16}>
                 <Form.Item
-                  label="Body(*)"
+                  label="Body"
                 >
                   {getFieldDecorator('body', {
                               rules: [{ required: !this.state.uploadBody, message: 'Please enter the body of the article!' }],
