@@ -3,7 +3,8 @@ import { Card, Input, Form, Row, Upload, message, Button, Icon } from 'antd'
 import { analyze } from '../actions';
 import { connect } from 'react-redux';
 import Result from './result'
-import 'antd/dist/antd.css';
+
+
 
 const { TextArea } = Input;
 const formItemLayout = {
@@ -63,11 +64,11 @@ class AnalyzePage extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
        if (!err) {
          console.log('Received values of form: ', values);
+         this.setState({
+           showResults: true
+         })
        }
     });
-    this.setState({
-      showResults: true
-    })
   }
 
   handleUpload = () => {

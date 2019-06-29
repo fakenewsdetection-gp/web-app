@@ -8,6 +8,26 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
+import ReactWordcloud from 'react-wordcloud';
+import words from '../modules/words'
+import { Divider, Row, Col } from 'antd';
+
+import C3Chart from "react-c3js";
+import "c3/c3.css";
+
+// Charts properties
+
+const hyperpartisanData = {
+  columns: [],
+  type : 'pie'
+};
+
+const stanceData = {
+  columns: [],
+  type : 'pie'
+};
+
+// Popup properties
 const styles = theme => ({
   root: {
     margin: 0,
@@ -57,9 +77,6 @@ class Result extends Component {
 
   constructor(props) {
     super(props)
-    // if (this.props.open) {
-    //   this.handleClickOpen();
-    // }
   }
 
   handleClickOpen = () => {
@@ -74,6 +91,9 @@ class Result extends Component {
   };
 
   render() {
+    // genres_piechart.data.columns = Object.entries([['data1', 30], ['data2', 120]]);
+    hyperpartisanData.columns = [['Hyperpartisan', 51.2], ['Non-hyperpartisan', 48.8]]
+    stanceData.columns = [['agrees', 25], ['disagree', 13.4], ['discuss', 45], ['unrelated', 16.6]]
     return (
       <div>
         <Dialog
@@ -83,47 +103,50 @@ class Result extends Component {
           maxWidth="md"
         >
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            Modal title
+            Analysis
           </DialogTitle>
           <DialogContent dividers>
             <Typography gutterBottom>
-              Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-              facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum
-              at eros.
+              Based on our models, this article follows a hyperpartisan with 69%
+               confidence.
             </Typography>
             <Typography gutterBottom>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-              lacus vel augue laoreet rutrum faucibus dolor auctor.
+              According to stance detection, this article was found to be relating its
+               headline with 72% confidence.
             </Typography>
             <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-              scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-              auctor fringilla.
+              All visual statistics can be shown below.
             </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-              scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-              auctor fringilla.
-            </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-              scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-              auctor fringilla.
-            </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-              scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-              auctor fringilla.
-            </Typography>
-            <Typography gutterBottom>
-              Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-              scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-              auctor fringilla.
-            </Typography>
+
+            <Divider />
+
+            <Row>
+            <Col span={4} />
+            <Col span={13}> Hyperpartisan </Col>
+            <Col> Stance </Col>
+            </Row>
+            <Row>
+             <Col span={12}><C3Chart data={hyperpartisanData} /></Col>
+             <Col span={12}><C3Chart data={stanceData} /></Col>
+            </Row>
+            <Divider />
+            <Row>
+              <Col span={11} />
+              <Col> Wordcloud </Col>
+            </Row>
+            <Row>
+              <Col span={4} />
+              <Col span={19}>
+                <div style={{height: 300, width: 500}}>
+                  <ReactWordcloud words={words} />
+                </div>
+              </Col>
+            </Row>
+
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-              Save changes
+              Ok
             </Button>
           </DialogActions>
         </Dialog>
