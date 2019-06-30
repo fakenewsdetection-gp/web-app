@@ -22,10 +22,6 @@ class LayoutPage extends Component {
       about: false
     };
 
-  constructor(props) {
-    super(props);
-  }
-
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
