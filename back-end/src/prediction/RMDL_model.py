@@ -2,7 +2,8 @@ from RMDL import rmdl_text as RMDL
 
 
 class RMDL_Model():
-    def __init__(self):
+    def __init__(self, random_deep=[3, 3, 3]):
+        RMDL.read_models(random_deep)
         pass
 
     def predict(self, article_text):
