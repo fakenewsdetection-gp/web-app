@@ -91,7 +91,7 @@ class AnalyzePage extends Component {
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Row gutter={16}>
               <Form.Item
-                label="Headline(Optional)"
+                label="Headline"
                 validateStatus="success"
               >
 
