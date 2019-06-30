@@ -6,7 +6,7 @@ export const ANALYZE = 'ANALYZE';
 export function analyze(article) {
   axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
   const URL = `${BASE_URL}/analysis`;
-  const request = axios.put(URL, article);
+  const request = axios.post(URL, article);
   return {
       type: ANALYZE,
       payload: request

@@ -54,16 +54,21 @@ class AnalyzePage extends Component {
 
   handleSubmit = (e) => {
     console.log('Submission button triggered!');
-    const article = {
-      'headline': 'USA Elections',
-      'body': 'Here is the body of the article.'
-    }
-    console.log('Investigated article: ', article);
-    // var result = this.props.analyze(article);
+    // const article = {
+    //   'headline': 'USA Elections',
+    //   'body': 'Here is the body of the article.'
+    // }
+    // console.log('Investigated article: ', article);
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
        if (!err) {
-         console.log('Received values of form: ', values);
+         // console.log('Received values of form: ', values);
+         const article = {
+           'headline': values.headline,
+           'body': values.body
+         }
+         console.log(article);
+         var result = this.props.analyze(article);
          this.setState({
            showResults: true
          })
@@ -91,22 +96,28 @@ class AnalyzePage extends Component {
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Row gutter={16}>
               <Form.Item
-                label="Headline(Optional)"
-                validateStatus="success"
-              >
-
-              <Input placeholder="Enter the headline/title of the article" id="error" />
+                label="Headline"
+                validateStatus="success">
+                {
+                  getFieldDecorator('headline', {
+                            rules: [{ required: false, message: 'Please enter the body of the article' }],
+                          })(
+                              <Input placeholder="Enter the headline of the article" id="error" />
+                          )
+                }
               </Form.Item>
             </Row>
             <Row gutter={16}>
                 <Form.Item
                   label="Body"
                 >
-                  {getFieldDecorator('body', {
-                              rules: [{ required: !this.state.uploadBody, message: 'Please enter the body of the article!' }],
+                  {
+                    getFieldDecorator('body', {
+                              rules: [{ required: !this.state.uploadBody, message: 'Please enter the body of the article' }],
                             })(
                               <TextArea rows={7} placeholder="Enter the body of the article" id="error"/>
-                            )}
+                            )
+                  }
                 </Form.Item>
             </Row>
             <Row gutter={16}>
