@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 // import { ConnectedRouter } from 'connected-react-router'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { history } from './store'
-import App from './containers/app'
 import AnalyzePage from './containers/analysis'
 import BiasPage from './containers/bias'
 import StancePage from './containers/stance'

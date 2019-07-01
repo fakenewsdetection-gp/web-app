@@ -78,7 +78,7 @@ class AnalyzePage extends Component {
 
   handleUpload = () => {
     console.log('Uploading Triggered!');
-    console.log('requested analysis: ', this.props.analysisResult);
+    // console.log('requested analysis: ', this.props.analysisResult);
     this.setState({uploadBody: true})
   }
 
@@ -91,7 +91,9 @@ class AnalyzePage extends Component {
     return (
         <Card title="Analyze" bordered={false}>
           {
-            this.state.showResults ? <Result close={this.handleClose}/> : ''
+            this.state.showResults ? <Result close={this.handleClose}
+                                             hyperconfidence={this.props.analysisResult[2]} 
+                                             words={this.props.analysisResult[1]} /> : ''
           }
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Row gutter={16}>

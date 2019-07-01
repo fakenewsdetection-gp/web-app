@@ -27,6 +27,23 @@ const stanceData = {
   type : 'pie'
 };
 
+// Wordcloud properties
+const options = {
+  colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
+  enableTooltip: true,
+  deterministic: false,
+  fontFamily: 'impact',
+  fontSizes: [5, 60],
+  fontStyle: 'normal',
+  fontWeight: 'normal',
+  padding: 1,
+  rotations: 3,
+  rotationAngles: [0, 90],
+  scale: 'sqrt',
+  spiral: 'archimedean',
+  transitionDuration: 1000,
+};
+
 // Popup properties
 const styles = theme => ({
   root: {
@@ -92,7 +109,15 @@ class Result extends Component {
 
   render() {
     // genres_piechart.data.columns = Object.entries([['data1', 30], ['data2', 120]]);
-    hyperpartisanData.columns = [['Hyperpartisan', 51.2], ['Non-hyperpartisan', 48.8]]
+
+    if (!this.props.hyperconfidence) {
+      return <div></div>
+    }
+    console.log('hyperconfidence: ', this.props.hyperconfidence.hyperpartisan);
+    hyperpartisanData.columns = [
+      ['Hyperpartisan', parseFloat(this.props.hyperconfidence.hyperpartisan)],
+      ['Non-hyperpartisan', 100 - parseFloat(this.props.hyperconfidence.hyperpartisan)]
+    ]
     stanceData.columns = [['agrees', 25], ['disagree', 13.4], ['discuss', 45], ['unrelated', 16.6]]
     return (
       <div>
@@ -135,10 +160,10 @@ class Result extends Component {
               <Col> Wordcloud </Col>
             </Row>
             <Row>
-              <Col span={4} />
-              <Col span={19}>
-                <div style={{height: 300, width: 500}}>
-                  <ReactWordcloud words={words} />
+              <Col span={3} />
+              <Col span={21}>
+                <div style={{height: 400, width: 600}}>
+                  <ReactWordcloud options={options} words={this.props.words ? this.props.words : [{text: '', value: 0}]} />
                 </div>
               </Col>
             </Row>
