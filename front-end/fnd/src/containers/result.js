@@ -9,7 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 
 import ReactWordcloud from 'react-wordcloud';
-import words from '../modules/words'
 import { Divider, Row, Col } from 'antd';
 
 import C3Chart from "react-c3js";
@@ -132,12 +131,8 @@ class Result extends Component {
           </DialogTitle>
           <DialogContent dividers>
             <Typography gutterBottom>
-              Based on our models, this article follows a hyperpartisan with 69%
-               confidence.
-            </Typography>
-            <Typography gutterBottom>
-              According to stance detection, this article was found to be relating its
-               headline with 72% confidence.
+              Our analysis shows that the article is biased with 58.6% confidence,
+               and the body of the article is found to be discussing the headline.
             </Typography>
             <Typography gutterBottom>
               All visual statistics can be shown below.
@@ -162,7 +157,7 @@ class Result extends Component {
             <Row>
               <Col span={3} />
               <Col span={21}>
-                <div style={{height: 400, width: 600}}>
+                <div style={{height: 500, width: 700}}>
                   <ReactWordcloud options={options} words={this.props.words ? this.props.words : [{text: '', value: 0}]} />
                 </div>
               </Col>

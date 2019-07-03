@@ -1,4 +1,4 @@
-from RMDL import rmdl_text as RMDL
+from RMDL.RMDL import rmdl_text as RMDL
 
 
 class RMDL_Model():
@@ -8,4 +8,4 @@ class RMDL_Model():
 
     def predict(self, article_text):
         pred, _ = RMDL.predict([article_text], 2, weighted_prediction=True, max_seq_len=2000, return_probs=True)
-        return pred[0]
+        return float(pred[0][0]*100.0)

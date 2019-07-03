@@ -1,4 +1,4 @@
-# from RMDL_model import RMDL_Model
+from .RMDL_model import RMDL_Model
 # from stance_model import Stance_Model
 from .text_preprocessor import TextCleaner
 from collections import Counter
@@ -7,7 +7,7 @@ from collections import Counter
 class Predictor():
     def __init__(self):
         self.cleaner = TextCleaner()
-        # self.rmdl_model = RMDL_Model()
+        self.rmdl_model = RMDL_Model()
         # self.stance_model = Stance_Model()
 
     def predict(self, article_text, article_headline):
@@ -18,8 +18,9 @@ class Predictor():
 
         body_cnts = Counter(body_tokens)
         headline_cnts = Counter(headline_tokens)
-        # rmdl_pred = self.rmdl_model.predict(clean_body)
-        rmdl_pred = { 'hyperpartisan': '58.6' }
+        rmdl_pred = { 'hyperpartisan': self.rmdl_model.predict(clean_body) }
+        print('Received hyperpartisan confidence: {}'.format(rmdl_pred))
+        # rmdl_pred = { 'hyperpartisan': '58.6' }
         return self._reformat_word_cloud(body_cnts), self._reformat_word_cloud(headline_cnts), rmdl_pred
 
     def _reformat_word_cloud(self, cnts_dict):

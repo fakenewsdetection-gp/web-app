@@ -105,3 +105,8 @@ venv.bak/
 
 # React
 /front-end/fnd/node_modules/
+/back-end/src/models/
+/back-end/src/RMDL/
+/back-end/src/text_tokenizer.pickle
+/back-end/src/tf_idf_vectorizer.pickle
+
