@@ -46,14 +46,22 @@ class Stance_Model():
         text_bow = self.bow_vectorizer.transform([text]).toarray()
         text_tf = self.tfreq_vectorizer.transform(text_bow).toarray()[0].reshape(1, -1)
         text_tfidf = self.tfidf_vectorizer.transform([text]).toarray().reshape(1, -1)
+<<<<<<< HEAD
         return text_tf, text_tfidf
+=======
+    return text_tf, text_tfidf
+>>>>>>> d334e683cb394bb6c0cc78dcc0fc29d6abe66d7b
 
     def __compute_cosine_similarity(self, head_tfidf, body_tfidf):
         return cosine_similarity(head_tfidf, body_tfidf)[0].reshape(1, 1)
 
     def __extract_sentiment_features(self, text):
         sentences = sent_tokenize(text)
+<<<<<<< HEAD
         return np.mean([list(self.sentiment_intensity_analyzer.polarity_scores(s).values()) for s in sentences], axis=0)
+=======
+        text_sentiment = np.mean([list(sentiment_analyzer.polarity_scores(s).values()) for s in sentences], axis=0)
+>>>>>>> d334e683cb394bb6c0cc78dcc0fc29d6abe66d7b
 
     def __extract_features(self, article_head, article_body):
         article_head = self.__clean_text(article_head)
@@ -62,10 +70,16 @@ class Stance_Model():
         body_tf, body_tfidf = self.__extract_tf_tfidf_features(article_body)
         cosine_sim = self.__compute_cosine_similarity(head_tfidf, body_tfidf)
         tf_cosine_vec = np.squeeze(np.c_[head_tf, body_tf, cosine_sim])
+<<<<<<< HEAD
         print("tf_cosine_vec")
         print(tf_cosine_vec.shape)
         head_sent = self.__extract_sentiment_features(article_head)
         body_sent = self.__extract_sentiment_features(article_body)
         sent_feat = np.concatenate((head_sent, body_sent), axis=None)
         feat_vec = np.concatenate((tf_cosine_vec, sent_feat))
+=======
+        head_sent = self.__extract_sentiment_features(article_head)
+        body_sent = self.__extract_sentiment_features(article_body)
+        feat_vec = np.concatenate((tf_cosine_vec, head_sent, body_sent))
+>>>>>>> d334e683cb394bb6c0cc78dcc0fc29d6abe66d7b
         return feat_vec.reshape((1, feat_vec.shape[0]))
