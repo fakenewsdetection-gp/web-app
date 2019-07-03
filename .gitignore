@@ -109,4 +109,5 @@ venv.bak/
 /back-end/src/RMDL/
 /back-end/src/text_tokenizer.pickle
 /back-end/src/tf_idf_vectorizer.pickle
-
+/back-end/src/stance_bow_vectorizer.pickle
+/back-end/src/*.pickles

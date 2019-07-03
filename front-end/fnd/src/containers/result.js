@@ -114,10 +114,16 @@ class Result extends Component {
     }
     console.log('hyperconfidence: ', this.props.hyperconfidence.hyperpartisan);
     hyperpartisanData.columns = [
-      ['Hyperpartisan', parseFloat(this.props.hyperconfidence.hyperpartisan)],
-      ['Non-hyperpartisan', 100 - parseFloat(this.props.hyperconfidence.hyperpartisan)]
+      ['hyperpartisan', parseFloat(this.props.hyperconfidence.hyperpartisan)],
+      ['non-hyperpartisan', 100 - parseFloat(this.props.hyperconfidence.hyperpartisan)]
     ]
-    stanceData.columns = [['agrees', 25], ['disagree', 13.4], ['discuss', 45], ['unrelated', 16.6]]
+    stanceData.columns = [
+                          ['agree', parseFloat(this.props.stanceconfidence.agree)],
+                          ['disagree', parseFloat(this.props.stanceconfidence.disagree)],
+                          ['discuss', parseFloat(this.props.stanceconfidence.discuss)],
+                          ['unrelated', parseFloat(this.props.stanceconfidence.unrelated)]
+                        ]
+    console.log('stance predictions: ', stanceData.columns);
     return (
       <div>
         <Dialog
@@ -131,7 +137,7 @@ class Result extends Component {
           </DialogTitle>
           <DialogContent dividers>
             <Typography gutterBottom>
-              Our analysis shows that the article is biased with 58.6% confidence,
+              Our analysis shows that the article is biased with {parseFloat(this.props.hyperconfidence.hyperpartisan)}% confidence,
                and the body of the article is found to be discussing the headline.
             </Typography>
             <Typography gutterBottom>

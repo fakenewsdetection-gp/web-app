@@ -54,11 +54,6 @@ class AnalyzePage extends Component {
 
   handleSubmit = (e) => {
     console.log('Submission button triggered!');
-    // const article = {
-    //   'headline': 'USA Elections',
-    //   'body': 'Here is the body of the article.'
-    // }
-    // console.log('Investigated article: ', article);
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
        if (!err) {
@@ -78,7 +73,7 @@ class AnalyzePage extends Component {
 
   handleUpload = () => {
     console.log('Uploading Triggered!');
-    // console.log('requested analysis: ', this.props.analysisResult);
+    console.log('requested analysis: ', this.props.analysisResult);
     this.setState({uploadBody: true})
   }
 
@@ -92,7 +87,8 @@ class AnalyzePage extends Component {
         <Card title="Analyze" bordered={false}>
           {
             this.state.showResults ? <Result close={this.handleClose}
-                                             hyperconfidence={this.props.analysisResult[2]} 
+                                             hyperconfidence={this.props.analysisResult[2]}
+                                             stanceconfidence={this.props.analysisResult[3]}
                                              words={this.props.analysisResult[1]} /> : ''
           }
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
