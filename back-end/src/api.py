@@ -7,23 +7,15 @@ app = Flask(__name__)
 CORS(app)
 api = Api(app)
 
-SAMPLE_RESULT = {
-    'isBiased': 'true',
-    'biasConfidence': '67.23',
-    'stance': 'related'
-}
-
-
 parser = reqparse.RequestParser()
 parser.add_argument('headline')
 parser.add_argument('body')
 
+predictor = None
 
 class Result(Resource):
-
     def __init__(self):
-        self.predictor = Predictor()
-
+        pass
     def get(self):
         print(SAMPLE_RESULT)
         return SAMPLE_RESULT, 200, {'Access-Control-Allow-Origin': '*'}
@@ -37,7 +29,7 @@ class Result(Resource):
             'body': args['body']
             }
         print('parsed article: {}'.format(article))
-        response = self.predictor.predict(article['headline'], article['body'])
+        response = predictor.predict(article['headline'], article['body'])
         print('Response: {}'.format(response))
         return response, 200, {'Access-Control-Allow-Origin': '*'}
 
@@ -45,4 +37,5 @@ api.add_resource(Result, '/analysis')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    predictor = Predictor()
+    app.run()

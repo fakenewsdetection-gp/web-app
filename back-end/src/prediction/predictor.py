@@ -26,7 +26,7 @@ class Predictor():
         # stance_pred = { 'agree': float(50.0) , 'disagree': float(10.0),
         #                 'discuss': float(30.0), 'unrelated': float(10.0) }
         print('Received stance predictions: {}'.format(stance_pred))
-        return self._reformat_word_cloud(body_cnts), self._reformat_word_cloud(headline_cnts), rmdl_pred, stance_pred
+        return self._reformat_word_cloud(body_cnts), rmdl_pred, stance_pred
 
     def _reformat_word_cloud(self, cnts_dict):
         formatted_word_cloud = []

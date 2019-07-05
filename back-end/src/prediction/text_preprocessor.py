@@ -7,11 +7,11 @@ import contractions
 import html
 
 
-nltk.download('stopwords')
+# nltk.download('stopwords')
 stop_words = set(stopwords.words("english"))
-
-nltk.download('punkt')
-nltk.download('wordnet')
+#
+# nltk.download('punkt')
+# nltk.download('wordnet')
 
 
 class TextCleaner:

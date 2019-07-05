@@ -110,4 +110,5 @@ venv.bak/
 /back-end/src/text_tokenizer.pickle
 /back-end/src/tf_idf_vectorizer.pickle
 /back-end/src/stance_bow_vectorizer.pickle
-/back-end/src/*.pickles
+/back-end/src/stance_tfidf_vectorizer.pickles
+/back-end/src/stance_tfreq_vectorizer.pickles

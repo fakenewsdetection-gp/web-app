@@ -48,10 +48,6 @@ class AnalyzePage extends Component {
     showResults: false
   }
 
-  constructor(props) {
-    super(props)
-  }
-
   handleSubmit = (e) => {
     console.log('Submission button triggered!');
     e.preventDefault();
@@ -87,9 +83,9 @@ class AnalyzePage extends Component {
         <Card title="Analyze" bordered={false}>
           {
             this.state.showResults ? <Result close={this.handleClose}
-                                             hyperconfidence={this.props.analysisResult[2]}
-                                             stanceconfidence={this.props.analysisResult[3]}
-                                             words={this.props.analysisResult[1]} /> : ''
+                                             hyperconfidence={this.props.analysisResult[1]}
+                                             stanceconfidence={this.props.analysisResult[2]}
+                                             words={this.props.analysisResult[0]} /> : ''
           }
           <Form {...formItemLayout} onSubmit={this.handleSubmit}>
             <Row gutter={16}>

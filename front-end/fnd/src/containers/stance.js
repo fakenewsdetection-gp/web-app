@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Card } from 'antd'
-import Result from './result'
 
 import 'antd/dist/antd.css';
 

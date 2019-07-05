@@ -91,10 +91,6 @@ class Result extends Component {
       open: true,
     };
 
-  constructor(props) {
-    super(props)
-  }
-
   handleClickOpen = () => {
     this.setState({
       open: true,
